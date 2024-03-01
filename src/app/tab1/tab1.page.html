@@ -1,0 +1,25 @@
+<app-header></app-header>
+
+<ion-content id="container">
+  <ion-skeleton-text animated="true" style="width: 100%; height: 200px" *ngIf="!sliders"></ion-skeleton-text>
+  <swiper-container *ngIf="sliders" pagination="true" autoplay="true">
+    <swiper-slide *ngFor="let slide of sliders"
+      style="background-image: url('{{ slide.image.original_url }}'); background-size: cover;">
+      <div class="slider ion-text-uppercase">
+        <h2>
+          <span class="title">{{ slide.title }}</span><br>
+          <span class="subtitle">{{ slide.subtitle }}</span>
+        </h2>
+      </div>
+    </swiper-slide>
+  </swiper-container>
+  <ion-list *ngIf="steps" inset="true">
+    <ion-item *ngFor="let step of steps">
+      <ion-note slot="start"><h1>{{ step.number.toString().padStart(2, '0') }}</h1></ion-note>
+      <ion-label>
+        {{ step.title }}
+        <p>{{ step.text }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

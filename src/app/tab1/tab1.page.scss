@@ -1,0 +1,19 @@
+.slider {
+    padding: 20px;
+    height: 200px;
+    background: linear-gradient(rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5));
+
+    .subtitle {
+        color: rgb(245, 99, 75);
+    }
+
+    h2 {
+        font-weight: 700;
+        text-shadow: 2px 2px 2px #000;
+    }
+}
+
+swiper-container {
+    --swiper-theme-color: #ffffff;
+}
