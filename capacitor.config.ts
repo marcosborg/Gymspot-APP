@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'gymspot',
+  appId: 'pt.gymspot.app',
+  appName: 'GymSpot',
   webDir: 'www/browser',
   server: {
     androidScheme: 'https'

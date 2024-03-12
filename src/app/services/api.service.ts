@@ -10,8 +10,8 @@ export class ApiService {
     private http: HttpClient
   ) { }
 
-  url: string = 'http://127.0.0.1:8000/api/v2/';
-  protected_url: string = 'http://127.0.0.1:8000/api/v1/';
+  url: string = 'https://gymspot.pt/api/v2/';
+  protected_url: string = 'https://gymspot.pt/api/v1/';
 
   getSliders() {
     return this.http.get(this.url + 'sliders');
