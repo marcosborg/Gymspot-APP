@@ -17,3 +17,17 @@
 swiper-container {
     --swiper-theme-color: #ffffff;
 }
+
+ion-thumbnail {
+    --size: 140px;
+}
+
+ion-img.logo {
+    width: 50px;
+    display: inline-block;
+}
+
+ion-icon {
+    color: rgb(245, 99, 75);
+    font-size: xx-large;
+}

@@ -1,13 +1,12 @@
-import { CUSTOM_ELEMENTS_SCHEMA, Component, OnInit } from '@angular/core';
-import { IonHeader } from '@ionic/angular/standalone';
+import { Component, OnInit } from '@angular/core';
+import { IonBackButton, IonButtons, IonHeader, IonImg, IonMenuButton, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
   standalone: true,
-  imports: [IonHeader],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  imports: [IonHeader, IonToolbar, IonButtons, IonMenuButton, IonTitle, IonImg, IonBackButton],
 })
 export class HeaderComponent implements OnInit {
 

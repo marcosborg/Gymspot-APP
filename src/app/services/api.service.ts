@@ -25,7 +25,23 @@ export class ApiService {
     return this.http.get(this.url + 'menus');
   }
 
-  getContentPage(content_page_id: any){
+  getContentPage(content_page_id: any) {
     return this.http.get(this.url + 'content-pages/' + content_page_id);
+  }
+
+  getAbouts() {
+    return this.http.get(this.url + 'abouts');
+  }
+
+  getServices() {
+    return this.http.get(this.url + 'services');
+  }
+
+  getGalleries() {
+    return this.http.get(this.url + 'galleries');
+  }
+
+  getLocations() {
+    return this.http.get(this.url + 'locations');
   }
 }

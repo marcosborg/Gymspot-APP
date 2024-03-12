@@ -1,16 +1,31 @@
-import { CUSTOM_ELEMENTS_SCHEMA, Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { IonApp, IonMenu, IonRouterOutlet, IonSplitPane } from '@ionic/angular/standalone';
+import { IonApp, IonContent, IonImg, IonLabel, IonList, IonMenu, IonRouterOutlet, IonSplitPane, MenuController } from '@ionic/angular/standalone';
+import { ApiService } from './services/api.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   standalone: true,
-  imports: [IonApp, IonRouterOutlet, IonMenu, IonSplitPane, RouterLink, RouterLinkActive],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  imports: [IonApp, IonRouterOutlet, IonMenu, IonSplitPane, RouterLink, RouterLinkActive, IonContent, IonList, IonLabel, CommonModule, IonImg],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   constructor(
-    public router: Router
-  ) {}
+    public router: Router,
+    private menu: MenuController,
+    private api: ApiService
+  ) { }
+
+  ngOnInit() {
+    this.router.events.subscribe(event => {
+      this.menu.close();
+    });
+    this.api.getMenus().subscribe((resp: any) => {
+      this.menus = resp.data;
+    });
+  }
+
+  menus: any = [];
+
 }
