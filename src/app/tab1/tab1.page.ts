@@ -58,6 +58,7 @@ export class Tab1Page implements OnInit {
     });
     this.api.getServices().subscribe((resp: any) => {
       this.services = resp.data;
+      console.log(this.services);
     });
     this.api.getGalleries().subscribe((resp: any) => {
       this.galleries = resp.data;

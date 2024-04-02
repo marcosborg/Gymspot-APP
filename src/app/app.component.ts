@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { IonApp, IonContent, IonImg, IonLabel, IonList, IonMenu, IonRouterOutlet, IonSplitPane, MenuController } from '@ionic/angular/standalone';
+import { IonApp, IonContent, IonHeader, IonImg, IonLabel, IonList, IonMenu, IonRouterOutlet, IonSplitPane, IonToolbar, MenuController } from '@ionic/angular/standalone';
 import { ApiService } from './services/api.service';
 import { CommonModule } from '@angular/common';
 
@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-root',
   templateUrl: 'app.component.html',
   standalone: true,
-  imports: [IonApp, IonRouterOutlet, IonMenu, IonSplitPane, RouterLink, RouterLinkActive, IonContent, IonList, IonLabel, CommonModule, IonImg],
+  imports: [IonApp, IonRouterOutlet, IonMenu, IonSplitPane, RouterLink, RouterLinkActive, IonContent, IonList, IonLabel, CommonModule, IonImg, IonHeader, IonToolbar],
 })
 export class AppComponent implements OnInit {
   constructor(

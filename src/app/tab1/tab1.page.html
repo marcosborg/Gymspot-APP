@@ -8,23 +8,18 @@
       <div class="slider ion-text-uppercase">
         <h2>
           <span class="title">{{ slide.title }}</span><br>
-          <span class="subtitle">{{ slide.subtitle }}</span>
+          <span class="subtitle">{{ slide.subtitle }}</span><br>
+          <ion-button size="small" color="danger" class="ion-margin-top" *ngFor="let about of abouts"
+            (click)="showAbout(about.text, about.image.original_url)">Saber mais</ion-button>
         </h2>
       </div>
     </swiper-slide>
   </swiper-container>
-  <ion-item lines="none" *ngFor="let about of abouts" class="ion-padding">
-    <ion-label>
-      {{ about.title }}
-    </ion-label>
-    <ion-button class="ion-margin-top" (click)="showAbout(about.text, about.image.original_url)">Saber
-      mais</ion-button>
-  </ion-item>
   <ion-modal [isOpen]="isModalOpen" [initialBreakpoint]="0.25" [breakpoints]="[0, 0.25, 0.5, 0.75]"
     (willDismiss)="cancel()">
     <ng-template>
       <ion-header>
-        <ion-toolbar>
+        <ion-toolbar color="danger">
           <ion-buttons slot="end">
             <ion-button (click)="cancel()">Fechar</ion-button>
           </ion-buttons>
@@ -39,20 +34,25 @@
       </ion-content>
     </ng-template>
   </ion-modal>
-  <swiper-container *ngIf="services" pagination="false" autoplay="true" slides-per-view="2" space-between="10" class="ion-margin-horizontal">
+
+  <swiper-container *ngIf="services" pagination="false" autoplay="true" slides-per-view="2">
     <swiper-slide *ngFor="let service of services">
-      <ion-item class="ion-padding-vertical">
-        <ion-label class="ion-padding-end">
-          <ion-icon name="{{ service.icon }}"></ion-icon>
-        </ion-label>
-        {{ service.title }}
-      </ion-item>
+      <ion-card color="secondary">
+        <ion-card-content class="ion-text-center">
+          <ion-icon name="{{ service.icon }}"></ion-icon><br>
+          <ion-text class="text">{{ service.title }}</ion-text>
+          <ion-text color="danger">
+            <h1 class="ion-padding-top">{{ service.text }}</h1>
+          </ion-text>
+        </ion-card-content>
+      </ion-card>
     </swiper-slide>
   </swiper-container>
-  <swiper-container *ngIf="locations" pagination="false" autoplay="true" slides-per-view="3" space-between="20" autoplay-delay="2500" class="ion-margin-bottom ion-padding">
+  <swiper-container *ngIf="locations" pagination="false" autoplay="true" autoplay-delay="2500">
     <swiper-slide *ngFor="let location of locations">
       <ion-note>{{ location.title }}</ion-note>
-      <ion-img style="background: url('{{ location.image.original_url }}') center center; background-size: cover; width: 100%; height: 100px"></ion-img>
+      <ion-img
+        style="background: url('{{ location.image.original_url }}') center center; background-size: cover; width: 100%; height: 100px"></ion-img>
     </swiper-slide>
   </swiper-container>
   <swiper-container *ngIf="galleries" pagination="false" autoplay="true" slides-per-view="2" space-between="30">
