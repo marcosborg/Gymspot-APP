@@ -68,7 +68,6 @@ export class Tab1Page implements OnInit {
     });
     this.api.getLocations().subscribe((resp: any) => {
       this.locations = resp.data;
-      console.log(this.locations);
     });
   }
 

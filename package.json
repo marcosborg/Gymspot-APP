@@ -28,6 +28,8 @@
     "@capacitor/keyboard": "5.0.8",
     "@capacitor/status-bar": "5.0.7",
     "@ionic/angular": "^7.5.0",
+    "angular-calendar": "^0.31.0",
+    "date-fns": "^3.6.0",
     "ionicons": "^7.2.1",
     "rxjs": "~7.8.0",
     "swiper": "^11.0.7",

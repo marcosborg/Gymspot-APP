@@ -1,5 +1,19 @@
-<app-header></app-header>>
+<app-header></app-header>
 
-<ion-content [fullscreen]="true">
-
+<ion-content *ngIf="location">
+    <app-locations></app-locations>
+    <ion-card>
+        <div style="background-image: url('{{ location.image.original_url }}');" class="img"></div>
+        <ion-card-header>
+            <ion-card-title>
+                {{ location.title }}
+            </ion-card-title>
+            <ion-card-subtitle>
+                {{ location.subtitle }}
+            </ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+            
+        </ion-card-content>
+    </ion-card>
 </ion-content>
