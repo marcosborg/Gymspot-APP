@@ -47,6 +47,10 @@ export class ApiService {
     return this.http.get(this.url + 'locations');
   }
 
+  getLocation(location_id: any) {
+    return this.http.get(this.url + 'locations/' + location_id);
+  }
+
   getFaqs() {
     return this.http.get(this.url + 'faq-questions');
   }

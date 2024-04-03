@@ -6,7 +6,8 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../components/header/header.component';
 import { register } from 'swiper/element/bundle';
 import { addIcons } from 'ionicons';
-import { addCircleOutline, logoEuro, peopleOutline, personOutline } from 'ionicons/icons';
+import { addCircleOutline, location, logoEuro, peopleOutline, personOutline } from 'ionicons/icons';
+import { Router } from '@angular/router';
 
 register();
 
@@ -30,13 +31,15 @@ register();
 export class Tab1Page implements OnInit {
   constructor(
     private api: ApiService,
-    public modal: ModalController
+    public modal: ModalController,
+    public router: Router
   ) {
     addIcons({
       personOutline,
       peopleOutline,
       addCircleOutline,
-      logoEuro
+      logoEuro,
+      location
     });
   }
 
@@ -48,6 +51,7 @@ export class Tab1Page implements OnInit {
   services: any = [];
   galleries: any = [];
   locations: any = [];
+  isGalleryOpen: any = false;
 
   ngOnInit() {
     this.api.getSliders().subscribe((resp: any) => {
@@ -58,13 +62,13 @@ export class Tab1Page implements OnInit {
     });
     this.api.getServices().subscribe((resp: any) => {
       this.services = resp.data;
-      console.log(this.services);
     });
     this.api.getGalleries().subscribe((resp: any) => {
       this.galleries = resp.data;
     });
     this.api.getLocations().subscribe((resp: any) => {
       this.locations = resp.data;
+      console.log(this.locations);
     });
   }
 
@@ -76,6 +80,11 @@ export class Tab1Page implements OnInit {
 
   cancel() {
     this.isModalOpen = false;
+    this.isGalleryOpen = false;
+  }
+
+  openGallery(gallery_id: any) {
+    this.isGalleryOpen = true;
   }
 
 }

@@ -36,6 +36,27 @@ ion-icon {
     font-size: smaller;
 }
 
-ion-card-content {
-    height: 170px;
+ion-card-content.service {
+    height: 160px;
+}
+
+.location-card {
+    position: relative;
+    color: white;
+    ion-card-header,
+    ion-card-content {
+        position: relative;
+        z-index: 2;
+    }
+}
+
+.location-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
 }
