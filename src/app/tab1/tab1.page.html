@@ -54,12 +54,12 @@
     <swiper-slide *ngFor="let location of locations">
       <ion-card style="background: url('{{ location.image.original_url }}') center center; background-size: cover;" class="location-card">
         <ion-card-header>
-          <ion-card-title>{{ location.title }}</ion-card-title>
           <ion-icon name="location" class="ion-float-right"></ion-icon>
           <ion-card-subtitle>{{ location.subtitle }}</ion-card-subtitle>
+          <ion-card-title>{{ location.title }}</ion-card-title>
         </ion-card-header>
         <ion-card-content>
-          <ion-button color="danger" class="ion-float-right ion-margin-bottom" (click)="router.navigateByUrl('location/' + location.id)">Reservas</ion-button>
+          <ion-button color="danger" class="ion-float-right ion-margin-bottom" (click)="router.navigateByUrl('location/' + location.id)">Spots</ion-button>
         </ion-card-content>
       </ion-card>
     </swiper-slide>

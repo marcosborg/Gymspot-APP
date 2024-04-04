@@ -21,4 +21,8 @@ export const routes: Routes = [
     path: 'location/:location_id',
     loadComponent: () => import('./pages/location/location.page').then( m => m.LocationPage)
   },
+  {
+    path: 'spot/:spot_id',
+    loadComponent: () => import('./pages/spot/spot.page').then( m => m.SpotPage)
+  },
 ];

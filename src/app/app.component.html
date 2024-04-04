@@ -8,13 +8,30 @@
       </ion-header>
       <ion-content color="light">
         <ion-list id="labels-list">
+          <ion-list-header color="light">
+            <ion-label>Spots</ion-label>
+          </ion-list-header>
+          <ion-item button color="light" *ngFor="let spot of spots" routerLink="/spot/{{ spot.id }}">
+            <ion-avatar class="square" aria-hidden="true" slot="start">
+              <img alt=""
+                src="{{ spot.photos ? spot.photos[0].original_url : 'https://ionicframework.com/docs/img/demos/avatar.svg' }}" />
+            </ion-avatar>
+            <ion-label>
+              <h1>{{ spot.name }}</h1>
+              <p>{{ spot.location.title }}</p>
+            </ion-label>
+          </ion-item>
+          <ion-list-header color="light">
+            <ion-label>Menu</ion-label>
+          </ion-list-header>
           <ion-item button routerLink="/" routerLinkActive="selected" color="light">
             <ion-label>Início</ion-label>
           </ion-item>
           <ion-item button routerLink="steps" routerLinkActive="selected" color="light">
             <ion-label>O conceito</ion-label>
           </ion-item>
-          <ion-item button routerLink="{{ menu.content_page_id == 13 ? 'faqs' : 'cms' }}/{{ menu.content_page.id }}" routerLinkActive="selected" *ngFor="let menu of menus" color="light">
+          <ion-item button routerLink="{{ menu.content_page_id == 13 ? 'faqs' : 'cms' }}/{{ menu.content_page.id }}"
+            routerLinkActive="selected" *ngFor="let menu of menus" color="light">
             <ion-label>{{ menu.name }}</ion-label>
           </ion-item>
         </ion-list>

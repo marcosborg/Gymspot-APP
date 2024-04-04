@@ -54,4 +54,12 @@ export class ApiService {
   getFaqs() {
     return this.http.get(this.url + 'faq-questions');
   }
+
+  getSpots() {
+    return this.http.get(this.url + 'spots');
+  }
+
+  getSpot(spot_id: any) {
+    return this.http.get(this.url + 'spots/' + spot_id);
+  }
 }

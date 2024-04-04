@@ -2,18 +2,23 @@
 
 <ion-content *ngIf="location">
     <app-locations></app-locations>
-    <ion-card>
-        <div style="background-image: url('{{ location.image.original_url }}');" class="img"></div>
+    <div style="background-image: url('{{ location.image.original_url }}');" class="img"></div>
+    <h1 class="ion-text-center">{{ location.title }}</h1>
+    <div class="ion-text-center">{{ location.subtitle }}</div>
+    <ion-card *ngFor="let spot of location.spots" (click)="router.navigateByUrl('/spot/' + spot.id)">
+        <ion-img src="{{ spot.photos ? spot.photos[0].original_url : 'https://ionicframework.com/docs/img/demos/card-media.png' }}"></ion-img>
         <ion-card-header>
             <ion-card-title>
-                {{ location.title }}
+                {{ spot.name }}
             </ion-card-title>
             <ion-card-subtitle>
-                {{ location.subtitle }}
+                {{ location.title }}
             </ion-card-subtitle>
         </ion-card-header>
         <ion-card-content>
-            
+            <ion-icon name="location-outline"></ion-icon> {{ spot.address }} {{ spot.zip }} {{ location.title }} {{ spot.country.name }}<br>
+            <ion-icon name="call-outline"></ion-icon> {{ spot.phone }}<br>
+            <ion-icon name="mail-outline"></ion-icon> {{ spot.email }}
         </ion-card-content>
     </ion-card>
 </ion-content>
