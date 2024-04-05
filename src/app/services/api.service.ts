@@ -62,4 +62,8 @@ export class ApiService {
   getSpot(spot_id: any) {
     return this.http.get(this.url + 'spots/' + spot_id);
   }
+
+  getMonth() {
+    return this.http.get(this.url + 'calendar/month');
+  }
 }

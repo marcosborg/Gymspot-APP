@@ -1,9 +1,9 @@
 <app-header></app-header>
 
-<ion-content *ngIf="spot">
+<ion-content *ngIf="spot && month">
   <swiper-container pagination="true" autoplay="true">
     <swiper-slide *ngFor="let photo of spot.photos">
-      <ion-img src="{{ photo.original_url }}"></ion-img>
+      <ion-img [src]="photo.original_url"></ion-img>
     </swiper-slide>
   </swiper-container>
   <ion-card>
@@ -12,7 +12,88 @@
       <ion-card-subtitle>{{ spot.location.title }}</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
-      <capacitor-google-map id="map"></capacitor-google-map>
+      <ion-note>
+        <small>
+          {{ spot.address }} {{ spot.location.title }} {{ spot.zip }}
+        </small>
+      </ion-note>
+      <br>
+      <ion-button size="small" class="ion-margin-top" (click)="setOpen(true)">Sobre</ion-button>
+      <ion-grid class="ion-text-center">
+        <ion-row>
+          <ion-col><</ion-col>
+          <ion-col>{{ month.name }}</ion-col>
+          <ion-col>></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Seg</ion-col>
+          <ion-col>Ter</ion-col>
+          <ion-col>Qua</ion-col>
+          <ion-col>Qui</ion-col>
+          <ion-col>Sex</ion-col>
+          <ion-col>Sáb</ion-col>
+          <ion-col>Dom</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>{{ month.daysWithWeekday[0].dayNumber }}</ion-col>
+          <ion-col>{{ month.daysWithWeekday[1].dayNumber }}</ion-col>
+          <ion-col>{{ month.daysWithWeekday[2].dayNumber }}</ion-col>
+          <ion-col>{{ month.daysWithWeekday[3].dayNumber }}</ion-col>
+          <ion-col>{{ month.daysWithWeekday[4].dayNumber }}</ion-col>
+          <ion-col>{{ month.daysWithWeekday[5].dayNumber }}</ion-col>
+          <ion-col>{{ month.daysWithWeekday[6].dayNumber }}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>{{ month.daysWithWeekday[7].dayNumber }}</ion-col>
+          <ion-col>{{ month.daysWithWeekday[8].dayNumber }}</ion-col>
+          <ion-col>{{ month.daysWithWeekday[9].dayNumber }}</ion-col>
+          <ion-col>{{ month.daysWithWeekday[10].dayNumber }}</ion-col>
+          <ion-col>{{ month.daysWithWeekday[11].dayNumber }}</ion-col>
+          <ion-col>{{ month.daysWithWeekday[12].dayNumber }}</ion-col>
+          <ion-col>{{ month.daysWithWeekday[13].dayNumber }}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>{{ month.daysWithWeekday[14].dayNumber }}</ion-col>
+          <ion-col>{{ month.daysWithWeekday[15].dayNumber }}</ion-col>
+          <ion-col>{{ month.daysWithWeekday[16].dayNumber }}</ion-col>
+          <ion-col>{{ month.daysWithWeekday[17].dayNumber }}</ion-col>
+          <ion-col>{{ month.daysWithWeekday[18].dayNumber }}</ion-col>
+          <ion-col>{{ month.daysWithWeekday[19].dayNumber }}</ion-col>
+          <ion-col>{{ month.daysWithWeekday[20].dayNumber }}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>{{ month.daysWithWeekday[21].dayNumber }}</ion-col>
+          <ion-col>{{ month.daysWithWeekday[22].dayNumber }}</ion-col>
+          <ion-col>{{ month.daysWithWeekday[23].dayNumber }}</ion-col>
+          <ion-col>{{ month.daysWithWeekday[24].dayNumber }}</ion-col>
+          <ion-col>{{ month.daysWithWeekday[25].dayNumber }}</ion-col>
+          <ion-col>{{ month.daysWithWeekday[26].dayNumber }}</ion-col>
+          <ion-col>{{ month.daysWithWeekday[27].dayNumber }}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>{{ month.daysWithWeekday[28].dayNumber }}</ion-col>
+          <ion-col>{{ month.daysWithWeekday[29].dayNumber }}</ion-col>
+          <ion-col>{{ month.daysWithWeekday[30].dayNumber }}</ion-col>
+          <ion-col>{{ month.daysWithWeekday[31].dayNumber }}</ion-col>
+          <ion-col>{{ month.daysWithWeekday[32].dayNumber }}</ion-col>
+          <ion-col>{{ month.daysWithWeekday[33].dayNumber }}</ion-col>
+          <ion-col>{{ month.daysWithWeekday[34].dayNumber }}</ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-card-content>
   </ion-card>
+  <ion-modal [isOpen]="isModalOpen">
+
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>{{ spot.name }}</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="setOpen(false)">Fechar</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding" [innerHtml]="spot.description">
+    </ion-content>
+
+  </ion-modal>
 </ion-content>
