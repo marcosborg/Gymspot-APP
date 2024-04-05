@@ -2,7 +2,6 @@
 
 <ion-content *ngIf="location">
     <app-locations></app-locations>
-    <div style="background-image: url('{{ location.image.original_url }}');" class="img"></div>
     <h1 class="ion-text-center">{{ location.title }}</h1>
     <div class="ion-text-center">{{ location.subtitle }}</div>
     <ion-card *ngFor="let spot of location.spots" (click)="router.navigateByUrl('/spot/' + spot.id)">
