@@ -66,4 +66,8 @@ export class ApiService {
   getMonth() {
     return this.http.get(this.url + 'calendar/month');
   }
+
+  changeMonth(link: string) {
+    return this.http.get(this.url + 'calendar/month/' + link);
+  }
 }

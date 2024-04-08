@@ -1,10 +1,12 @@
 import { CUSTOM_ELEMENTS_SCHEMA, Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonImg, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonImg, IonTitle, IonToolbar, IonIcon } from '@ionic/angular/standalone';
 import { HeaderComponent } from 'src/app/components/header/header.component';
 import { ApiService } from 'src/app/services/api.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { addIcons } from 'ionicons';
+import { chevronBackCircleOutline, chevronForwardCircleOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-spot',
@@ -19,7 +21,8 @@ import { ActivatedRoute } from '@angular/router';
     CommonModule,
     FormsModule,
     HeaderComponent,
-    IonImg
+    IonImg,
+    IonIcon
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
@@ -32,23 +35,41 @@ export class SpotPage implements OnInit {
 
   constructor(
     private api: ApiService,
-    private route: ActivatedRoute
-  ) { }
+    private route: ActivatedRoute,
+    public router: Router
+  ) {
+    addIcons({ 
+      chevronForwardCircleOutline,
+      chevronBackCircleOutline
+     });
+  }
 
   ngOnInit() {
     this.spot_id = this.route.snapshot.params['spot_id'];
     this.api.getSpot(this.spot_id).subscribe((resp: any) => {
       this.spot = resp.data;
-      console.log(resp.data);
     });
     this.api.getMonth().subscribe((resp: any) => {
       this.month = resp;
-      console.log(this.month);
     });
   }
 
   setOpen(isOpen: boolean) {
     this.isModalOpen = isOpen;
+  }
+
+  goDay(year: any, currentMonth: any, dayNumber: any) {
+    console.log({
+      year: year,
+      currentMonth: currentMonth,
+      dayNumber: dayNumber
+    });
+  }
+
+  changeMonth(link: string) {
+    this.api.changeMonth(link).subscribe((resp: any) => {
+      this.month = resp;
+    });
   }
 
 }
