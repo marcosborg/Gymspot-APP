@@ -1,13 +1,23 @@
-capacitor-google-map {
-    display: inline-block;
-    width: 275px;
-    height: 400px;
-}
-
 ion-icon {
     font-size: 25px;
 }
 
 .inactive {
     opacity: 0.5;
+}
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.row {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.col {
+    flex: 1;
+    padding: 8px 5px;
 }
