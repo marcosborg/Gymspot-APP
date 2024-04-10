@@ -25,4 +25,8 @@ export const routes: Routes = [
     path: 'spot/:spot_id',
     loadComponent: () => import('./pages/spot/spot.page').then( m => m.SpotPage)
   },
+  {
+    path: 'day/:year/:currentMonth/:dayNumber',
+    loadComponent: () => import('./pages/day/day.page').then( m => m.DayPage)
+  },
 ];

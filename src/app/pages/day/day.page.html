@@ -1,0 +1,110 @@
+<app-header></app-header>
+
+<ion-content *ngIf="week">
+    <swiper-container class="mySwiper" slides-per-view="auto" centered-slides="true" space-between="30">
+        <swiper-slide>
+            <ion-list>
+                <ion-list-header>
+                    <ion-label>
+                        Segunda<br>
+                        <ion-note style="font-size: 12px; font-weight: 100;">{{ week[0].date }}</ion-note>
+                    </ion-label>
+                </ion-list-header>
+                <ion-item *ngFor="let slot of week[0].slots">
+                    <ion-label>
+                        {{ slot.start }}
+                    </ion-label>
+                </ion-item>
+            </ion-list>
+        </swiper-slide>
+        <swiper-slide><ion-list>
+                <ion-list-header>
+                    <ion-label>
+                        Terça<br>
+                        <ion-note style="font-size: 12px; font-weight: 100;">{{ week[1].date }}</ion-note>
+                    </ion-label>
+                </ion-list-header>
+                <ion-item *ngFor="let slot of week[1].slots">
+                    <ion-label>
+                        {{ slot.start }}
+                    </ion-label>
+                </ion-item>
+            </ion-list>
+        </swiper-slide>
+        <swiper-slide>
+            <ion-list>
+                <ion-list-header>
+                    <ion-label>
+                        Quarta<br>
+                        <ion-note style="font-size: 12px; font-weight: 100;">{{ week[2].date }}</ion-note>
+                    </ion-label>
+                </ion-list-header>
+                <ion-item *ngFor="let slot of week[2].slots">
+                    <ion-label>
+                        {{ slot.start }}
+                    </ion-label>
+                </ion-item>
+            </ion-list>
+        </swiper-slide>
+        <swiper-slide>
+            <ion-list>
+                <ion-list-header>
+                    <ion-label>
+                        Quinta<br>
+                        <ion-note style="font-size: 12px; font-weight: 100;">{{ week[3].date }}</ion-note>
+                    </ion-label>
+                </ion-list-header>
+                <ion-item *ngFor="let slot of week[3].slots">
+                    <ion-label>
+                        {{ slot.start }}
+                    </ion-label>
+                </ion-item>
+            </ion-list>
+        </swiper-slide>
+        <swiper-slide>
+            <ion-list>
+                <ion-list-header>
+                    <ion-label>
+                        Sexta<br>
+                        <ion-note style="font-size: 12px; font-weight: 100;">{{ week[4].date }}</ion-note>
+                    </ion-label>
+                </ion-list-header>
+                <ion-item *ngFor="let slot of week[4].slots">
+                    <ion-label>
+                        {{ slot.start }}
+                    </ion-label>
+                </ion-item>
+            </ion-list>
+        </swiper-slide>
+        <swiper-slide>
+            <ion-list>
+                <ion-list-header>
+                    <ion-label>
+                        Sábado<br>
+                        <ion-note style="font-size: 12px; font-weight: 100;">{{ week[5].date }}</ion-note>
+                    </ion-label>
+                </ion-list-header>
+                <ion-item *ngFor="let slot of week[5].slots">
+                    <ion-label>
+                        {{ slot.start }}
+                    </ion-label>
+                </ion-item>
+            </ion-list>
+        </swiper-slide>
+        <swiper-slide>
+            <ion-list>
+                <ion-list-header>
+                    <ion-label>
+                        Domingo<br>
+                        <ion-note style="font-size: 12px; font-weight: 100;">{{ week[6].date }}</ion-note>
+                    </ion-label>
+                </ion-list-header>
+                <ion-item *ngFor="let slot of week[6].slots">
+                    <ion-label>
+                        {{ slot.start }}
+                    </ion-label>
+                </ion-item>
+            </ion-list>
+        </swiper-slide>
+    </swiper-container>
+</ion-content>

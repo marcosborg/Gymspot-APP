@@ -38,10 +38,10 @@ export class SpotPage implements OnInit {
     private route: ActivatedRoute,
     public router: Router
   ) {
-    addIcons({ 
+    addIcons({
       chevronForwardCircleOutline,
       chevronBackCircleOutline
-     });
+    });
   }
 
   ngOnInit() {
@@ -59,11 +59,7 @@ export class SpotPage implements OnInit {
   }
 
   goDay(year: any, currentMonth: any, dayNumber: any) {
-    console.log({
-      year: year,
-      currentMonth: currentMonth,
-      dayNumber: dayNumber
-    });
+    this.router.navigateByUrl('day/' + year + '/' + currentMonth + '/' + dayNumber);
   }
 
   changeMonth(link: string) {
