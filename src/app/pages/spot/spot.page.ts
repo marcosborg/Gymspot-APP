@@ -59,7 +59,7 @@ export class SpotPage implements OnInit {
   }
 
   goDay(year: any, currentMonth: any, dayNumber: any) {
-    this.router.navigateByUrl('day/' + year + '/' + currentMonth + '/' + dayNumber);
+    this.router.navigateByUrl('day/' + this.spot_id + '/' + year + '/' + currentMonth + '/' + dayNumber);
   }
 
   changeMonth(link: string) {

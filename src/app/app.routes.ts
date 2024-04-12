@@ -26,7 +26,7 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/spot/spot.page').then( m => m.SpotPage)
   },
   {
-    path: 'day/:year/:currentMonth/:dayNumber',
+    path: 'day/:spot_id/:year/:currentMonth/:dayNumber',
     loadComponent: () => import('./pages/day/day.page').then( m => m.DayPage)
   },
 ];

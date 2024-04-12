@@ -1,3 +1,19 @@
-swiper-slide {
-    width: 60%;
+ion-note {
+    font-size: 12px;
+}
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.row {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.col {
+    flex: 1;
+    padding: 8px 5px;
 }
