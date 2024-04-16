@@ -9,8 +9,11 @@
     }
 
     h2 {
-        font-weight: 700;
         text-shadow: 2px 2px 2px #000;
+        font-size: 20px;
+    }
+    ion-button {
+        font-size: 15px;
     }
 }
 
@@ -33,7 +36,7 @@ ion-icon {
 }
 
 .text {
-    font-size: smaller;
+    font-size: 13px;
 }
 
 ion-card-content.service {

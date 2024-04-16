@@ -9,7 +9,7 @@
       <strong><ion-text>{{ faq.question }}</ion-text></strong>
     </ion-card-header>
     <!-- Uso de *ngIf para mostrar/esconder baseado em isExpanded -->
-    <ion-card-content *ngIf="faq.isExpanded">
+    <ion-card-content *ngIf="faq.isExpanded" class="ion-text-justify">
       <hr style="background-color: #f5634b;">
       {{ faq.answer }}
     </ion-card-content>

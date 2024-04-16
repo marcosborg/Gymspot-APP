@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonLabel, IonThumbnail, IonNote, IonList, IonButton, IonIcon } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonLabel, IonThumbnail, IonNote, IonList, IonButton, IonIcon, IonFab, IonFabButton, IonModal, IonButtons } from '@ionic/angular/standalone';
 import { HeaderComponent } from 'src/app/components/header/header.component';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { addIcons } from 'ionicons';
-import { chevronBackOutline, chevronForwardOutline } from 'ionicons/icons';
+import { chevronBackOutline, chevronForwardOutline, cartOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-day',
@@ -27,7 +27,11 @@ import { chevronBackOutline, chevronForwardOutline } from 'ionicons/icons';
     IonNote,
     IonList,
     IonButton,
-    IonIcon
+    IonIcon,
+    IonFab,
+    IonFabButton,
+    IonModal,
+    IonButtons
   ]
 })
 export class DayPage implements OnInit {
@@ -36,7 +40,7 @@ export class DayPage implements OnInit {
     private router: ActivatedRoute,
     private api: ApiService
   ) {
-    addIcons({ chevronBackOutline, chevronForwardOutline })
+    addIcons({ chevronBackOutline, chevronForwardOutline, cartOutline })
   }
 
   ngOnInit() {
@@ -63,6 +67,9 @@ export class DayPage implements OnInit {
 
   day: any;
 
+  selectedSlots: any[] = [];
+  isModalOpen = false;
+
   pastDay() {
     let data = {
       spot_id: this.spot_id,
@@ -85,6 +92,20 @@ export class DayPage implements OnInit {
     this.api.getDay(data).subscribe((resp) => {
       this.day = resp;
     });
+  }
+
+  selectSlot(slot: any) {
+    const index = this.selectedSlots.findIndex(selectedSlot => selectedSlot === slot);
+    if (index > -1) {
+      this.selectedSlots.splice(index, 1);
+    } else {
+      this.selectedSlots.push(slot);
+    }
+    console.log(this.selectedSlots);
+  }
+
+  setOpen(isOpen: boolean) {
+    this.isModalOpen = isOpen;
   }
 
 }

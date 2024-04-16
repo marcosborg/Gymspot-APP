@@ -18,7 +18,7 @@
         </small>
       </ion-note>
       <br>
-      <ion-button size="small" class="ion-margin-vertical" (click)="setOpen(true)">Sobre</ion-button>
+      <ion-button size="small" fill="outline" color="danger" class="ion-margin-vertical" (click)="setOpen(true)">Equipamentos</ion-button>
       <div class="ion-text-center grid">
         <div class="row" style="background: var(--ion-color-danger); color: #ffffff; align-items: center;">
           <div class="col ion-text-left" (click)="changeMonth(month.previousMonthLink)"><strong><ion-icon
@@ -193,7 +193,7 @@
   <ion-modal [isOpen]="isModalOpen">
 
     <ion-header>
-      <ion-toolbar>
+      <ion-toolbar color="danger">
         <ion-title>{{ spot.name }}</ion-title>
         <ion-buttons slot="end">
           <ion-button (click)="setOpen(false)">Fechar</ion-button>
