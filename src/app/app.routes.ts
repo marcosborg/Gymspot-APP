@@ -29,4 +29,16 @@ export const routes: Routes = [
     path: 'day/:spot_id/:year/:currentMonth/:dayNumber',
     loadComponent: () => import('./pages/day/day.page').then( m => m.DayPage)
   },
+  {
+    path: 'pt/:personal_trainer_id',
+    loadComponent: () => import('./pages/pt/pt.page').then( m => m.PtPage)
+  },
+  {
+    path: 'spots',
+    loadComponent: () => import('./pages/spots/spots.page').then( m => m.SpotsPage)
+  },
+  {
+    path: 'pts',
+    loadComponent: () => import('./pages/pts/pts.page').then( m => m.PtsPage)
+  },
 ];

@@ -10,10 +10,10 @@ export class ApiService {
     private http: HttpClient
   ) { }
 
-  url: string = 'https://gymspot.pt/api/v2/';
-  protected_url: string = 'https://gymspot.pt/api/v1/';
-  //url: string = 'http://127.0.0.1:8000/api/v2/';
-  //protected_url: string = 'http://127.0.0.1:8000/api/v1/';
+  //url: string = 'https://gymspot.pt/api/v2/';
+  //protected_url: string = 'https://gymspot.pt/api/v1/';
+  url: string = 'http://127.0.0.1:8000/api/v2/';
+  protected_url: string = 'http://127.0.0.1:8000/api/v1/';
 
   getSliders() {
     return this.http.get(this.url + 'sliders');
@@ -55,8 +55,12 @@ export class ApiService {
     return this.http.get(this.url + 'faq-questions');
   }
 
-  getSpots() {
-    return this.http.get(this.url + 'spots');
+  getSpots(number: any = null) {
+    let plus = '';
+    if (number) {
+      plus = '?limit=' + number;
+    }
+    return this.http.get(this.url + 'spots' + plus);
   }
 
   getSpot(spot_id: any) {
@@ -73,5 +77,17 @@ export class ApiService {
 
   getDay(data: any) {
     return this.http.post(this.url + 'calendar/day', data);
+  }
+
+  getPts(number: any = null) {
+    let limit = '';
+    if (number) {
+      limit = '?limit=' + number;
+    }
+    return this.http.get(this.url + 'personal-trainers' + limit);
+  }
+
+  getPt(personal_trainer_id: any) {
+    return this.http.get(this.url + 'personal-trainers/' + personal_trainer_id);
   }
 }

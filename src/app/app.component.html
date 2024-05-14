@@ -10,6 +10,7 @@
         <ion-list id="labels-list">
           <ion-list-header color="light">
             <ion-label>Spots</ion-label>
+            <ion-button color="danger" routerLink="/spots">Ver todos</ion-button>
           </ion-list-header>
           <ion-item button color="light" *ngFor="let spot of spots" routerLink="/spot/{{ spot.id }}">
             <ion-avatar class="square" aria-hidden="true" slot="start">
@@ -17,16 +18,28 @@
                 src="{{ spot.photos ? spot.photos[0].original_url : 'https://ionicframework.com/docs/img/demos/avatar.svg' }}" />
             </ion-avatar>
             <ion-label>
-              <h1>{{ spot.name }}</h1>
+              <h2>{{ spot.name }}</h2>
               <p>{{ spot.location.title }}</p>
             </ion-label>
           </ion-item>
           <ion-list-header color="light">
-            <ion-label>Menu</ion-label>
+            <ion-label>PTs</ion-label>
+            <ion-button color="danger" routerLink="/pts">Ver todos</ion-button>
           </ion-list-header>
-          <ion-item button routerLink="/" routerLinkActive="selected" color="light">
-            <ion-label>Início</ion-label>
+          <ion-item button color="light" *ngFor="let pt of pts" routerLink="/pt/{{ pt.id }}">
+            <ion-avatar aria-hidden="true" slot="start">
+              <ion-img src="{{ pt.photos ? pt.photos[0].original_url : 'https://ionicframework.com/docs/img/demos/avatar.svg' }}"></ion-img>
+            </ion-avatar>
+            <ion-label>
+              <h2>{{ pt.name }}</h2>
+              <p>
+                <ion-badge style="font-size: 10px; margin-left: 2px;" color="danger" slot="start" *ngFor="let spot of pt.spots">{{ spot.name }}</ion-badge>
+              </p>
+            </ion-label>
           </ion-item>
+          <ion-list-header color="light">
+            <ion-label>Mais informação</ion-label>
+          </ion-list-header>
           <ion-item button routerLink="steps" routerLinkActive="selected" color="light">
             <ion-label>O conceito</ion-label>
           </ion-item>

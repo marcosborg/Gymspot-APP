@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonLabel, IonThumbnail, IonNote, IonList, IonButton, IonIcon, IonFab, IonFabButton, IonModal, IonButtons, IonImg } from '@ionic/angular/standalone';
+import { AlertController, LoadingController, IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonLabel, IonThumbnail, IonNote, IonList, IonButton, IonIcon, IonFab, IonFabButton, IonModal, IonButtons, IonImg } from '@ionic/angular/standalone';
 import { HeaderComponent } from 'src/app/components/header/header.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { addIcons } from 'ionicons';
 import { chevronBackOutline, chevronForwardOutline, cartOutline } from 'ionicons/icons';
@@ -38,17 +38,20 @@ import { chevronBackOutline, chevronForwardOutline, cartOutline } from 'ionicons
 export class DayPage implements OnInit {
 
   constructor(
-    private router: ActivatedRoute,
-    private api: ApiService
+    private route: ActivatedRoute,
+    private api: ApiService,
+    private loadingController: LoadingController,
+    private router: Router,
+    private alertController: AlertController
   ) {
     addIcons({ chevronBackOutline, chevronForwardOutline, cartOutline })
   }
 
   ngOnInit() {
-    this.spot_id = this.router.snapshot.params['spot_id'];
-    this.year = this.router.snapshot.params['year'];
-    this.currentMonth = this.router.snapshot.params['currentMonth'];
-    this.dayNumber = this.router.snapshot.params['dayNumber'];
+    this.spot_id = this.route.snapshot.params['spot_id'];
+    this.year = this.route.snapshot.params['year'];
+    this.currentMonth = this.route.snapshot.params['currentMonth'];
+    this.dayNumber = this.route.snapshot.params['dayNumber'];
     let data = {
       spot_id: this.spot_id,
       year: this.year,
@@ -108,5 +111,48 @@ export class DayPage implements OnInit {
   setOpen(isOpen: boolean) {
     this.isModalOpen = isOpen;
   }
+
+  pay(type: string) {
+    this.loadingController.create().then((loading) => {
+      loading.present();
+      setTimeout(() => {
+        loading.dismiss();
+        let code = this.generateSixDigitCode();
+        this.alertController.create({
+          header: 'Pagamento concluido',
+          subHeader: 'Aqui tem o código de acesso ao SPOT',
+          message: 'O código de acesso é: ' + code + '. O mesmo pode ser novamente obtido na área de reservas no menu inferior da APP.',
+          buttons: [
+            {
+              text: 'Continuar',
+              handler: () => {
+                this.isModalOpen = false;
+                setTimeout(() => {
+                  this.router.navigateByUrl('tabs/tab2', { replaceUrl: true });
+                }, 500);
+              }
+            },
+            {
+              text: 'Solicitar um PT',
+              handler: () => {
+                this.isModalOpen = false;
+                setTimeout(() => {
+                  this.router.navigateByUrl('/pts', { replaceUrl: true });
+                }, 500);
+              }
+            }
+          ]
+        }).then((alert) => {
+          alert.present();
+        })
+      }, 3000);
+    });
+  }
+
+  generateSixDigitCode() {
+    let randomNumber = Math.floor(Math.random() * 1000000);
+    let sixDigitCode = String(randomNumber).padStart(6, '0');
+    return sixDigitCode;
+  }  
 
 }

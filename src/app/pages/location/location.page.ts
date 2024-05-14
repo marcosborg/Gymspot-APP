@@ -54,7 +54,6 @@ export class LocationPage implements OnInit {
     this.location_id = this.route.snapshot.params['location_id'];
     this.api.getLocation(this.location_id).subscribe((resp: any) => {
       this.location = resp.data;
-      console.log(this.location);
     });
   }
 

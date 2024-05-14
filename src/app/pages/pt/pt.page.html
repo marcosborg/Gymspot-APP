@@ -1,0 +1,45 @@
+<app-header></app-header>
+
+<ion-content *ngIf="pt">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{ pt.name }}</ion-card-title>
+      <ion-card-subtitle>Personal trainer</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div class="profile-picture-container">
+        <img src="{{ pt.photos ? pt.photos[0].original_url : 'https://ionicframework.com/docs/img/demos/avatar.svg' }}"
+          class="profile-picture">
+      </div>
+      <div class="social-icons">
+        <a href="URL_DO_FACEBOOK_AQUI" target="_blank">
+          <ion-icon name="logo-facebook"></ion-icon>
+        </a>
+        <a href="URL_DO_LINKEDIN_AQUI" target="_blank">
+          <ion-icon name="logo-linkedin"></ion-icon>
+        </a>
+        <a href="URL_DO_INSTAGRAM_AQUI" target="_blank">
+          <ion-icon name="logo-instagram"></ion-icon>
+        </a>
+        <a href="URL_DO_TIKTOK_AQUI" target="_blank">
+          <ion-icon name="logo-tiktok"></ion-icon>
+        </a>
+      </div>
+      <div class="email-link">
+        <ion-icon name="mail-outline"></ion-icon>
+        <a [href]="'mailto:' + pt.email">{{ pt.email }}</a>
+      </div>
+      <div class="email-link">
+        <ion-icon name="call-outline"></ion-icon>
+        <a [href]="'tel:' + pt.phone">{{ pt.phone }}</a>
+      </div>
+      <div class="ion-margin-top">
+        <ion-badge color="danger" style="margin: 2px;" *ngFor="let spot of pt.spots">{{ spot.name }}</ion-badge>
+      </div>
+
+      <div class="ion-padding-top" [innerHtml]="pt.description"></div>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

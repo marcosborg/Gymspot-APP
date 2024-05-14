@@ -1,0 +1,73 @@
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import {
+  IonContent,
+  IonHeader,
+  IonTitle,
+  IonToolbar,
+  IonCard,
+  IonItem,
+  IonAvatar,
+  IonCardHeader,
+  IonCardTitle,
+  IonCardSubtitle,
+  IonCardContent,
+  IonIcon,
+  IonBadge
+} from '@ionic/angular/standalone';
+import { HeaderComponent } from 'src/app/components/header/header.component';
+import { ApiService } from 'src/app/services/api.service';
+import { ActivatedRoute } from '@angular/router';
+import { addIcons } from 'ionicons';
+import { logoFacebook, logoInstagram, logoLinkedin, logoTiktok, mailOutline, callOutline } from 'ionicons/icons';
+
+@Component({
+  selector: 'app-pt',
+  templateUrl: './pt.page.html',
+  styleUrls: ['./pt.page.scss'],
+  standalone: true,
+  imports: [
+    IonContent,
+    IonHeader,
+    IonTitle,
+    IonToolbar,
+    CommonModule,
+    FormsModule,
+    HeaderComponent,
+    IonCard,
+    IonItem,
+    IonAvatar,
+    IonCardHeader,
+    IonCardTitle,
+    IonCardSubtitle,
+    IonCardContent,
+    IonIcon,
+    IonBadge
+  ]
+})
+export class PtPage implements OnInit {
+
+  constructor(
+    private api: ApiService,
+    private route: ActivatedRoute,
+  ) { }
+
+  ngOnInit() {
+    addIcons({
+      logoFacebook,
+      logoInstagram,
+      logoLinkedin,
+      logoTiktok,
+      mailOutline,
+      callOutline
+    });
+    this.api.getPt(this.personal_trainer_id).subscribe((resp: any) => {
+      this.pt = resp.data;
+    });
+  }
+
+  pt: any;
+  personal_trainer_id: any = this.route.snapshot.params['personal_trainer_id'];
+
+}

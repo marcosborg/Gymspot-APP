@@ -73,13 +73,13 @@
                     </ion-item>
                 </ion-list>
                 <ion-list class="ion-margin">
-                    <ion-item color="light" button>
+                    <ion-item color="light" button (click)="pay('mbway')">
                         <img height="100" src="../../../assets/mbway-seeklogo.svg">
                     </ion-item>
-                    <ion-item color="light" button>
+                    <ion-item color="light" button  (click)="pay('multibanco')">
                         <img height="70" src="../../../assets/multibanco.svg" class="ion-margin">
                     </ion-item>
-                    <ion-item color="light" button>
+                    <ion-item color="light" button  (click)="pay('paypal')">
                         <img height="70" src="../../../assets/paypal.svg" class="ion-margin">
                     </ion-item>
                 </ion-list>
