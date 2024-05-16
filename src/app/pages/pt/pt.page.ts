@@ -18,7 +18,7 @@ import {
 } from '@ionic/angular/standalone';
 import { HeaderComponent } from 'src/app/components/header/header.component';
 import { ApiService } from 'src/app/services/api.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { addIcons } from 'ionicons';
 import { logoFacebook, logoInstagram, logoLinkedin, logoTiktok, mailOutline, callOutline } from 'ionicons/icons';
 
@@ -51,6 +51,7 @@ export class PtPage implements OnInit {
   constructor(
     private api: ApiService,
     private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -69,5 +70,9 @@ export class PtPage implements OnInit {
 
   pt: any;
   personal_trainer_id: any = this.route.snapshot.params['personal_trainer_id'];
+
+  goSpot(spot_id: any) {
+    this.router.navigateByUrl('spot/' + spot_id);
+  }
 
 }

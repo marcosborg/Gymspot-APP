@@ -9,7 +9,7 @@
       <ion-content color="light">
         <ion-list id="labels-list">
           <ion-list-header color="light">
-            <ion-label>Spots</ion-label>
+            <ion-label style="font-size: 16px;">Reserve um Spot</ion-label>
             <ion-button color="danger" routerLink="/spots">Ver todos</ion-button>
           </ion-list-header>
           <ion-item button color="light" *ngFor="let spot of spots" routerLink="/spot/{{ spot.id }}">
@@ -23,7 +23,7 @@
             </ion-label>
           </ion-item>
           <ion-list-header color="light">
-            <ion-label>PTs</ion-label>
+            <ion-label style="font-size: 16px;">Reserve um<br>Personal Trainer</ion-label>
             <ion-button color="danger" routerLink="/pts">Ver todos</ion-button>
           </ion-list-header>
           <ion-item button color="light" *ngFor="let pt of pts" routerLink="/pt/{{ pt.id }}">

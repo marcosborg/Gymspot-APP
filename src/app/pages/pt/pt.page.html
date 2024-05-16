@@ -35,10 +35,10 @@
         <a [href]="'tel:' + pt.phone">{{ pt.phone }}</a>
       </div>
       <div class="ion-margin-top">
-        <ion-badge color="danger" style="margin: 2px;" *ngFor="let spot of pt.spots">{{ spot.name }}</ion-badge>
+        <ion-badge (click)="goSpot(spot.id)" color="danger" style="margin: 2px;" *ngFor="let spot of pt.spots">{{ spot.name }}</ion-badge>
       </div>
 
-      <div class="ion-padding-top" [innerHtml]="pt.description"></div>
+      <div class="ion-padding-top ion-text-justify" [innerHtml]="pt.description"></div>
     </ion-card-content>
   </ion-card>
 
