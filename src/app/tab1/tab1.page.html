@@ -39,7 +39,7 @@
   <swiper-container *ngIf="spots" pagination="false" autoplay="true" slides-per-view="2">
     <swiper-slide *ngFor="let spot of spots">
       <ion-card style="height: 150px; background: url('{{ spot.photos[0].original_url }}') center center; background-size: cover;"
-      class="location-card">
+      class="location-card" routerLink="/spot/{{ spot.id }}">
         <ion-card-header>
           <ion-card-title>{{ spot.name }}</ion-card-title>
           <ion-card-subtitle style="color: #cccccc;">{{ spot.location.title }}</ion-card-subtitle>
