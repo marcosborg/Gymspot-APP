@@ -7,7 +7,7 @@ import { HeaderComponent } from '../components/header/header.component';
 import { register } from 'swiper/element/bundle';
 import { addIcons } from 'ionicons';
 import { addCircleOutline, location, logoEuro, peopleOutline, personOutline } from 'ionicons/icons';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 register();
 
@@ -25,6 +25,7 @@ register();
     HeaderComponent,
     IonModal,
     IonIcon,
+    RouterLink
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
@@ -48,10 +49,11 @@ export class Tab1Page implements OnInit {
   isModalOpen: any = false;
   text: string = '';
   image: string = '';
-  services: any = [];
   galleries: any = [];
   locations: any = [];
   isGalleryOpen: any = false;
+  personalTrainers: any = [];
+  spots: any = [];
 
   ngOnInit() {
     this.api.getSliders().subscribe((resp: any) => {
@@ -60,14 +62,18 @@ export class Tab1Page implements OnInit {
     this.api.getAbouts().subscribe((resp: any) => {
       this.abouts = resp.data;
     });
-    this.api.getServices().subscribe((resp: any) => {
-      this.services = resp.data;
-    });
     this.api.getGalleries().subscribe((resp: any) => {
       this.galleries = resp.data;
     });
     this.api.getLocations().subscribe((resp: any) => {
       this.locations = resp.data;
+    });
+    this.api.getPts(10).subscribe((resp: any) => {
+      this.personalTrainers = resp.data;
+    });
+    this.api.getSpots(10).subscribe((resp: any) => {
+      this.spots = resp.data;
+      console.log(this.spots);
     });
   }
 
