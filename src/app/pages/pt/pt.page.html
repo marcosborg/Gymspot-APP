@@ -8,6 +8,7 @@
     </ion-card-header>
 
     <ion-card-content>
+      <ion-note><strong class="ion-text-uppercase">{{ pt.certificate_type }}: </strong>{{ pt.professional_certificate }}</ion-note>
       <div class="profile-picture-container">
         <div class="profile-picture" style="background-image: url({{ pt.photos ? pt.photos[0].original_url : 'https://ionicframework.com/docs/img/demos/avatar.svg' }});"></div>
       </div>

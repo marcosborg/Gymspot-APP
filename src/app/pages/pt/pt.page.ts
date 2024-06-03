@@ -14,7 +14,8 @@ import {
   IonCardSubtitle,
   IonCardContent,
   IonIcon,
-  IonBadge
+  IonBadge,
+  IonNote
 } from '@ionic/angular/standalone';
 import { HeaderComponent } from 'src/app/components/header/header.component';
 import { ApiService } from 'src/app/services/api.service';
@@ -43,7 +44,8 @@ import { logoFacebook, logoInstagram, logoLinkedin, logoTiktok, mailOutline, cal
     IonCardSubtitle,
     IonCardContent,
     IonIcon,
-    IonBadge
+    IonBadge,
+    IonNote
   ]
 })
 export class PtPage implements OnInit {
