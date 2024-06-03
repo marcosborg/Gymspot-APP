@@ -18,8 +18,34 @@
         </small>
       </ion-note>
       <br>
-      <ion-button size="small" fill="outline" color="danger" class="ion-margin-vertical" (click)="setOpen(true)">Equipamentos</ion-button>
-      <div class="ion-text-center grid">
+      <ion-button size="small" fill="outline" color="danger" class="ion-margin-vertical"
+        (click)="setOpen(true)">Equipamentos</ion-button>
+      <h1><ion-text color="danger">{{ spot.price }}<small>€</small></ion-text></h1>
+      <span style="font-size: 12px;">(Por cada slot de 30 minutos)</span>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-modal [isOpen]="isModalOpen">
+    <ion-header>
+      <ion-toolbar color="danger">
+        <ion-title>{{ spot.name }}</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="setOpen(false)">Fechar</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding" [innerHtml]="spot.description">
+    </ion-content>
+  </ion-modal>
+
+  <ion-modal [isOpen]="isCalendarOpen" [initialBreakpoint]="0.50" [breakpoints]="[0, 0.50]">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Selecione o dia</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <div class="ion-text-center grid ion-margin">
         <div class="row" style="background: var(--ion-color-danger); color: #ffffff; align-items: center;">
           <div class="col ion-text-left" (click)="changeMonth(month.previousMonthLink)"><strong><ion-icon
                 name="chevron-back-circle-outline"></ion-icon></strong></div>
@@ -188,27 +214,12 @@
             month.daysWithWeekday[34].dayNumber }}</div>
         </div>
       </div>
-    </ion-card-content>
-  </ion-card>
-  <ion-modal [isOpen]="isModalOpen">
-
-    <ion-header>
-      <ion-toolbar color="danger">
-        <ion-title>{{ spot.name }}</ion-title>
-        <ion-buttons slot="end">
-          <ion-button (click)="setOpen(false)">Fechar</ion-button>
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content class="ion-padding" [innerHtml]="spot.description">
     </ion-content>
-
   </ion-modal>
+
 </ion-content>
 <ion-footer>
-  <ion-toolbar>
-    <ion-item lines="none">
-      <ion-label class="ion-text-center">Selecione o dia para começar a agendar</ion-label>
-    </ion-item>
+  <ion-toolbar color="danger">
+    <ion-button expand="full" fill="clear" color="light" (click)="isCalendarOpen = !isCalendarOpen">Agendar</ion-button>
   </ion-toolbar>
 </ion-footer>

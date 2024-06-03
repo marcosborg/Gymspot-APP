@@ -32,6 +32,7 @@ export class SpotPage implements OnInit {
   spot_id: any;
   month: any;
   isModalOpen: any = false;
+  isCalendarOpen: any = false;
 
   constructor(
     private api: ApiService,
@@ -48,6 +49,7 @@ export class SpotPage implements OnInit {
     this.spot_id = this.route.snapshot.params['spot_id'];
     this.api.getSpot(this.spot_id).subscribe((resp: any) => {
       this.spot = resp.data;
+      console.log(this.spot);
     });
     this.api.getMonth().subscribe((resp: any) => {
       this.month = resp;
@@ -59,7 +61,10 @@ export class SpotPage implements OnInit {
   }
 
   goDay(year: any, currentMonth: any, dayNumber: any) {
-    this.router.navigateByUrl('day/' + this.spot_id + '/' + year + '/' + currentMonth + '/' + dayNumber);
+    this.isCalendarOpen = false;
+    setTimeout(() => {
+      this.router.navigateByUrl('day/' + this.spot_id + '/' + year + '/' + currentMonth + '/' + dayNumber);
+    }, 500);
   }
 
   changeMonth(link: string) {

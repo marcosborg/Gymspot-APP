@@ -65,6 +65,7 @@ export class PtPage implements OnInit {
     });
     this.api.getPt(this.personal_trainer_id).subscribe((resp: any) => {
       this.pt = resp.data;
+      console.log(this.pt);
     });
   }
 
