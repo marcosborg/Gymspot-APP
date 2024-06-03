@@ -19,7 +19,7 @@
     </swiper-slide>
   </swiper-container>
 
-  <swiper-container *ngIf="sliders" pagination="true" autoplay="true" effect="flip" style="margin: 10px;"
+  <swiper-container *ngIf="sliders" pagination="true" autoplay="true" effect="coverflow" style="margin: 10px;"
     [autoplay]="{ delay: 2000 }">
     <swiper-slide *ngFor="let slide of sliders"
       style="background-image: url('{{ slide.image.original_url }}'); background-size: cover; border-radius: 10px; overflow: hidden;">
@@ -27,8 +27,7 @@
         <h2 style="font-size: 25px;">
           {{ slide.title }}<br>
           <span class="subtitle">{{ slide.subtitle }}</span><br>
-          <ion-button size="small" color="danger" class="ion-margin-top" *ngFor="let about of abouts"
-            (click)="showAbout(about.text, about.image.original_url)">Saber mais</ion-button>
+          <ion-button size="small" color="danger" class="ion-margin-top" *ngFor="let about of abouts" (click)="showAbout(about.text, about.image.original_url)">Saber mais</ion-button>
         </h2>
       </div>
     </swiper-slide>
@@ -89,8 +88,6 @@
       </ion-card>
     </swiper-slide>
   </swiper-container>
-
-
 
   <swiper-container *ngIf="galleries" pagination="false" autoplay="true" slides-per-view="2">
     <swiper-slide *ngFor="let gallery of galleries">

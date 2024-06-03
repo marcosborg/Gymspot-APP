@@ -81,6 +81,7 @@ export class Tab1Page implements OnInit {
     this.isModalOpen = !this.isModalOpen;
     this.text = text;
     this.image = image;
+    console.log(this.text);
   }
 
   cancel() {
