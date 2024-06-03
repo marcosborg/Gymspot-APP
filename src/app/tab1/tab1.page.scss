@@ -72,5 +72,8 @@ ion-img.logo {
     width: 130px;
     height: 130px;
     margin: 10px;
-    border: solid 3px rgb(245, 99, 75);;
+    border: solid 3px rgb(245, 99, 75);
+    background-size: cover;
+    background-position: center top;
+    display: inline-block;
 }

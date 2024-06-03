@@ -6,7 +6,7 @@
     <swiper-slide *ngFor="let slide of sliders"
       style="background-image: url('{{ slide.image.original_url }}'); background-size: cover;">
       <div class="slider">
-        <h2>
+        <h2 style="font-size: 25px;">
           {{ slide.title }}<br>
           <span class="subtitle">{{ slide.subtitle }}</span><br>
           <ion-button size="small" color="danger" class="ion-margin-top" *ngFor="let about of abouts"
@@ -38,14 +38,14 @@
 
   <swiper-container *ngIf="spots" pagination="false" autoplay="true" slides-per-view="2">
     <swiper-slide *ngFor="let spot of spots">
-      <ion-card style="height: 150px; background: url('{{ spot.photos[0].original_url }}') center center; background-size: cover;"
+      <ion-card style="min-height: 150px; background: url('{{ spot.photos[0].original_url }}') center center; background-size: cover;"
       class="location-card">
         <ion-card-header>
-          <ion-card-title>{{ spot.name }}</ion-card-title>
-          <ion-card-subtitle style="color: #cccccc;">{{ spot.location.title }}</ion-card-subtitle>
+          <ion-card-title style="font-size: 18px;">{{ spot.name }}</ion-card-title>
+          <ion-card-subtitle style="color: #cccccc; font-size: 12px;">{{ spot.location.title }}</ion-card-subtitle>
         </ion-card-header>
         <ion-card-content>
-          <h2><span style="color: #f5634b;">€{{ spot.price }}</span><span style="font-size: 12px;"><br>slot de 30 minutos</span></h2>
+          <h2><span style="color: #f5634b; font-size: 25px;">€{{ spot.price }}</span><span style="font-size: 12px;"><br>slot de 30 minutos</span></h2>
         </ion-card-content>
       </ion-card>
     </swiper-slide>
@@ -55,15 +55,14 @@
     <swiper-slide *ngFor="let pt of personalTrainers">
       <ion-card routerLink="/pt/{{ pt.id }}">
         <div class="ion-text-center">
-          <img class="thumbnail"
-            src="{{ pt.photos ? pt.photos[0].original_url : 'https://ionicframework.com/docs/img/demos/thumbnail.svg' }}">
+          <div class="thumbnail" style="background-image: url({{ pt.photos ? pt.photos[0].original_url : 'https://ionicframework.com/docs/img/demos/thumbnail.svg' }});"></div>
         </div>
-        <ion-card-header>
+        <ion-card-header class="ion-text-center">
           <ion-card-title style="font-size: 14px;">{{ pt.name }}</ion-card-title>
-          <ion-card-subtitle>Personal trainer</ion-card-subtitle>
+          <ion-card-subtitle style="font-size: 12px;">Personal trainer</ion-card-subtitle>
         </ion-card-header>
-        <ion-card-content>
-          <h2 style="line-height: 14px;"><span style="color: #f5634b;">€{{ pt.price }}</span><span style="font-size: 12px;"><br>por 30 minutos</span></h2>
+        <ion-card-content class="ion-text-center">
+          <h2 style="line-height: 14px;"><span style="color: #f5634b; font-size: 25px;">€{{ pt.price }}</span><span style="font-size: 12px;"><br>por 30 minutos</span></h2>
         </ion-card-content>
       </ion-card>
     </swiper-slide>
@@ -74,8 +73,8 @@
       <ion-card style="background: url('{{ location.image.original_url }}') center center; background-size: cover;"
         class="location-card">
         <ion-card-header>
-          <ion-card-subtitle>{{ location.subtitle }}</ion-card-subtitle>
-          <ion-card-title>{{ location.title }}</ion-card-title>
+          <ion-card-subtitle style="font-size: 12px;">{{ location.subtitle }}</ion-card-subtitle>
+          <ion-card-title style="font-size: 18px;">{{ location.title }}</ion-card-title>
         </ion-card-header>
         <ion-card-content>
           <ion-button color="danger" size="small" class="ion-float-right ion-margin-bottom"
