@@ -1,0 +1,7 @@
+{
+  "name": "GymSpot",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

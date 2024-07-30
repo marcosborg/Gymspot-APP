@@ -1,0 +1,50 @@
+<app-header></app-header>
+
+<ion-content>
+    <ion-card>
+        <ion-card-header>
+            <h1 class="ion-text-center">Perfil</h1>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-list class="ion-margin-top">
+                <ion-item>
+                    <ion-input label="Nome" labelPlacement="stacked"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-input label="Email" labelPlacement="stacked"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-input type="Password" label="Password" labelPlacement="stacked"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-input label="Repetição da password" labelPlacement="stacked"></ion-input>
+                </ion-item>
+            </ion-list>
+            <ion-item lines="none">
+                <ion-toggle [(ngModel)]="pt">Sou personal trainer</ion-toggle>
+            </ion-item>
+            <ion-list *ngIf="pt">
+                <ion-item>
+                    <ion-input label="Telefone" labelPlacement="stacked"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-input label="Facebook" labelPlacement="stacked"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-input label="Instagram" labelPlacement="stacked"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-input label="Linkedin" labelPlacement="stacked"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-input label="TikTok" labelPlacement="stacked"></ion-input>
+                </ion-item>
+                <ion-item lines="none">
+                    <ion-textarea label="Descrição e curriculum" labelPlacement="stacked"></ion-textarea>
+                </ion-item>
+            </ion-list>
+            <ion-button expand="block" class="ion-margin-top">Atualizar dados</ion-button>
+        </ion-card-content>
+    </ion-card>
+
+</ion-content>
