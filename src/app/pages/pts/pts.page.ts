@@ -48,7 +48,6 @@ export class PtsPage implements OnInit {
   ngOnInit() {
     this.api.getPts().subscribe((resp: any) => {
       this.pts = resp.data;
-      console.log(this.pts);
     });
   }
 

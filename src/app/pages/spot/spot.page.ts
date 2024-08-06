@@ -49,7 +49,6 @@ export class SpotPage implements OnInit {
     this.spot_id = this.route.snapshot.params['spot_id'];
     this.api.getSpot(this.spot_id).subscribe((resp: any) => {
       this.spot = resp.data;
-      console.log(this.spot);
     });
     this.api.getMonth().subscribe((resp: any) => {
       this.month = resp;

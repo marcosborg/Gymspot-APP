@@ -1,5 +1,25 @@
 <app-header></app-header>
 
 <ion-content>
-
+    <ion-card>
+        <ion-card-header>
+            <ion-card-title>Carrinho</ion-card-title>
+            <ion-card-subtitle>Confirme as suas reservas</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-list>
+                <ion-item-sliding *ngFor="let selectedSlot of selectedSlots; let i = index; let last = last">
+                    <ion-item [lines]="last ? 'none' : 'full'">
+                        <ion-label>
+                            {{ selectedSlot.spot.name }}<br>{{ selectedSlot.timestamp | date: 'fullDate' : '' : 'pt' }}
+                        </ion-label>
+                        {{ selectedSlot.start }} - {{ selectedSlot.end }}
+                    </ion-item>
+                    <ion-item-options>
+                        <ion-item-option color="danger" (click)="removeFromCart(i)">Remover do carrinho</ion-item-option>
+                    </ion-item-options>
+                </ion-item-sliding>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
 </ion-content>

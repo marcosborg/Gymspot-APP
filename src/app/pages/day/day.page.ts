@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LoadingController, IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonLabel, IonThumbnail, IonNote, IonList, IonButton, IonIcon, IonFab, IonFabButton, IonModal, IonButtons, IonImg } from '@ionic/angular/standalone';
 import { HeaderComponent } from 'src/app/components/header/header.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { addIcons } from 'ionicons';
 import { chevronBackOutline, chevronForwardOutline, cartOutline } from 'ionicons/icons';
@@ -42,7 +42,8 @@ export class DayPage implements OnInit {
     private route: ActivatedRoute,
     private api: ApiService,
     private loadingController: LoadingController,
-    private preferences: PreferencesService
+    private preferences: PreferencesService,
+    private router: Router
   ) {
     addIcons({ chevronBackOutline, chevronForwardOutline, cartOutline })
   }
@@ -75,6 +76,7 @@ export class DayPage implements OnInit {
     this.api.getDay(data).subscribe(async (resp) => {
       await loading.dismiss();
       this.day = resp;
+      console.log(this.day);
       const storedSlots = await this.preferences.checkName('selected_slots');
       const storedSlotsValue = storedSlots?.value ?? '[]'; // Handle null by providing a default value
       this.selectedSlots = JSON.parse(storedSlotsValue);
@@ -137,7 +139,7 @@ export class DayPage implements OnInit {
   }
 
   goCart() {
-    console.log('goCart');
+    this.router.navigateByUrl('/cart');
   }
 
 }

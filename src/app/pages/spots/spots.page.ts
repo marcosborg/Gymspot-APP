@@ -46,7 +46,6 @@ export class SpotsPage implements OnInit {
   ngOnInit() {
     this.api.getSpots().subscribe((resp: any) => {
       this.spots = resp.data;
-      console.log(this.spots);
     });
   }
 

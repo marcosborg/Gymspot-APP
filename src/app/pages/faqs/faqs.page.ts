@@ -37,7 +37,6 @@ export class FaqsPage implements OnInit {
         ...faq,
         isExpanded: false // Adiciona a propriedade isExpanded a cada FAQ
       }));
-      console.log(this.faqs);
     });
   }
 
