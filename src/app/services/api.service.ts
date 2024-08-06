@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -12,8 +12,16 @@ export class ApiService {
 
   //url: string = 'https://gymspot.pt/api/v2/';
   //protected_url: string = 'https://gymspot.pt/api/v1/';
+  //auth_url: string = 'https://gymspot.pt/api/';
   url: string = 'http://127.0.0.1:8000/api/v2/';
   protected_url: string = 'http://127.0.0.1:8000/api/v1/';
+  auth_url: string = 'http://127.0.0.1:8000/api/';
+
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Accept-Language': 'pt'
+    })
+  };
 
   getSliders() {
     return this.http.get(this.url + 'sliders');
@@ -89,5 +97,53 @@ export class ApiService {
 
   getPt(personal_trainer_id: any) {
     return this.http.get(this.url + 'personal-trainers/' + personal_trainer_id);
+  }
+
+  register(data: any) {
+    return this.http.post(this.auth_url + 'register', data, this.httpOptions);
+  }
+
+  login(data: any) {
+    return this.http.post(this.auth_url + 'login', data, this.httpOptions);
+  }
+
+  user(data: any) {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Accept-Language': 'pt',
+        'Authorization': 'Bearer ' + data.access_token
+      })
+    };
+    return this.http.get(this.protected_url + 'user', this.httpOptions);
+  }
+
+  updateUser(data: any) {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Accept-Language': 'pt',
+        'Authorization': 'Bearer ' + data.access_token
+      })
+    };
+    return this.http.post(this.protected_url + 'update-user', data.user, this.httpOptions);
+  }
+
+  updateClient(data: any) {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Accept-Language': 'pt',
+        'Authorization': 'Bearer ' + data.access_token
+      })
+    };
+    return this.http.post(this.protected_url + 'update-client', data.client, this.httpOptions);
+  }
+
+  countries(data: any) {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Accept-Language': 'pt',
+        'Authorization': 'Bearer ' + data.access_token
+      })
+    };
+    return this.http.get(this.protected_url + 'countries', this.httpOptions);
   }
 }
