@@ -24,6 +24,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LoadingController } from '@ionic/angular';
 import { PreferencesService } from '../services/preferences.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab3',
@@ -58,7 +59,8 @@ export class Tab3Page implements OnInit {
     private api: ApiService,
     private loadingController: LoadingController,
     private preferences: PreferencesService,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -314,9 +316,5 @@ export class Tab3Page implements OnInit {
         });
       });
     });
-  }
-
-  UpdatePt() {
-    
   }
 }
