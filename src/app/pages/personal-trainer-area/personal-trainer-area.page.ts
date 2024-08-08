@@ -26,12 +26,16 @@ import {
   IonModal,
   IonButtons,
   AlertController,
-  IonFooter,
+  IonGrid,
+  IonRow,
+  IonCol,
+  IonImg,
+  ActionSheetController,
 } from '@ionic/angular/standalone';
 import { HeaderComponent } from 'src/app/components/header/header.component';
 import { ApiService } from 'src/app/services/api.service';
 import { addIcons } from 'ionicons';
-import { cameraOutline } from 'ionicons/icons';
+import { cameraOutline, saveOutline } from 'ionicons/icons';
 import { PreferencesService } from 'src/app/services/preferences.service';
 
 @Component({
@@ -64,7 +68,10 @@ import { PreferencesService } from 'src/app/services/preferences.service';
     IonIcon,
     IonModal,
     IonButtons,
-    IonFooter,
+    IonGrid,
+    IonRow,
+    IonCol,
+    IonImg,
   ]
 })
 export class PersonalTrainerAreaPage {
@@ -73,9 +80,10 @@ export class PersonalTrainerAreaPage {
     private api: ApiService,
     private loadingController: LoadingController,
     private preferences: PreferencesService,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private actionSheetCtrl: ActionSheetController
   ) {
-    addIcons({ cameraOutline });
+    addIcons({ cameraOutline, saveOutline });
   }
 
   access_token: any;
@@ -84,6 +92,7 @@ export class PersonalTrainerAreaPage {
   personal_trainer: any;
   isModalOpen = false;
   profile_photo: any = 'https://ionicframework.com/docs/img/demos/avatar.svg';
+  other_photos: any = [];
 
   ionViewWillEnter() {
     this.inicialize();
@@ -109,10 +118,12 @@ export class PersonalTrainerAreaPage {
               spots.forEach((element: any) => {
                 spotsArray.push(element.id);
               });
-              if(this.personal_trainer.photos.length > 0) {
+              if (this.personal_trainer.photos.length > 0) {
                 this.profile_photo = this.personal_trainer.photos[0].original_url;
+                this.other_photos = this.personal_trainer.photos.slice(1).map((photo: any) => photo);
               }
               this.personal_trainer.spots = spotsArray;
+              console.log(this.personal_trainer);
             } else {
               this.personal_trainer = {
                 name: this.user.name,
@@ -193,8 +204,29 @@ export class PersonalTrainerAreaPage {
       resultType: CameraResultType.Base64,
       width: 800
     });
+
     this.profile_photo = 'data:image/jpeg;base64,' + image.base64String;
   };
+
+  otherPhoto = async () => {
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: false,
+      resultType: CameraResultType.Base64,
+      width: 800
+    });
+    let photo = 'data:image/jpeg;base64,' + image.base64String;
+    let data = {
+      access_token: this.access_token,
+      request: {
+        personal_trainer_id: this.personal_trainer.id,
+        photo: photo
+      }
+    }
+    this.api.saveOtherPhoto(data).subscribe((resp: any) => {
+      this.inicialize();
+    });
+  }
 
   savePhoto() {
     let data = {
@@ -206,6 +238,32 @@ export class PersonalTrainerAreaPage {
     }
     this.api.saveProfilePhoto(data).subscribe(() => {
       this.isModalOpen = false;
+    });
+  }
+
+  deletePhoto(photo_id: any) {
+    this.actionSheetCtrl.create({
+      header: 'Deseja apagar a photo?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel'
+        },
+        {
+          text: 'Apagar',
+          handler: () => {
+            let data = {
+              access_token: this.access_token,
+              photo_id: photo_id
+            }
+            this.api.deletePhoto(data).subscribe((resp) => {
+              this.inicialize();
+            });
+          }
+        }
+      ]
+    }).then((action) => {
+      action.present();
     });
   }
 

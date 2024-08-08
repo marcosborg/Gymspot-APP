@@ -166,4 +166,24 @@ export class ApiService {
     };
     return this.http.post(this.protected_url + 'save-profile-photo', data.request, this.httpOptions);
   }
+
+  saveOtherPhoto(data: any) {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Accept-Language': 'pt',
+        'Authorization': 'Bearer ' + data.access_token
+      })
+    };
+    return this.http.post(this.protected_url + 'save-other-photo', data.request, this.httpOptions);
+  }
+
+  deletePhoto(data: any) {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Accept-Language': 'pt',
+        'Authorization': 'Bearer ' + data.access_token
+      })
+    };
+    return this.http.get(this.protected_url + 'delete-photo/' + data.photo_id, this.httpOptions);
+  }
 }
