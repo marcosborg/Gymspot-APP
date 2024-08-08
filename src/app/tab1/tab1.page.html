@@ -74,7 +74,7 @@
       <ion-card routerLink="/pt/{{ pt.id }}">
         <div class="ion-text-center">
           <div class="thumbnail"
-            style="background-image: url({{ pt.photos ? pt.photos[0].original_url : 'https://ionicframework.com/docs/img/demos/thumbnail.svg' }});">
+            style="background-image: url({{ pt.photos.length > 0 ? pt.photos[0].original_url : 'https://ionicframework.com/docs/img/demos/thumbnail.svg' }});">
           </div>
         </div>
         <ion-card-header class="ion-text-center">

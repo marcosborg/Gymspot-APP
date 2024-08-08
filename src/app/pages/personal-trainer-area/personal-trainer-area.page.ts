@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Camera, CameraResultType } from '@capacitor/camera';
 import {
   IonContent,
   IonHeader,
@@ -25,6 +26,7 @@ import {
   IonModal,
   IonButtons,
   AlertController,
+  IonFooter,
 } from '@ionic/angular/standalone';
 import { HeaderComponent } from 'src/app/components/header/header.component';
 import { ApiService } from 'src/app/services/api.service';
@@ -62,6 +64,7 @@ import { PreferencesService } from 'src/app/services/preferences.service';
     IonIcon,
     IonModal,
     IonButtons,
+    IonFooter,
   ]
 })
 export class PersonalTrainerAreaPage {
@@ -80,6 +83,7 @@ export class PersonalTrainerAreaPage {
   user: any;
   personal_trainer: any;
   isModalOpen = false;
+  profile_photo: any = 'https://ionicframework.com/docs/img/demos/avatar.svg';
 
   ionViewWillEnter() {
     this.inicialize();
@@ -105,6 +109,9 @@ export class PersonalTrainerAreaPage {
               spots.forEach((element: any) => {
                 spotsArray.push(element.id);
               });
+              if(this.personal_trainer.photos.length > 0) {
+                this.profile_photo = this.personal_trainer.photos[0].original_url;
+              }
               this.personal_trainer.spots = spotsArray;
             } else {
               this.personal_trainer = {
@@ -140,7 +147,7 @@ export class PersonalTrainerAreaPage {
       this.api.updateProfessionalData(data).subscribe((resp: any) => {
         loading.dismiss();
         this.inicialize();
-        if (resp.photos.lenght == 0) {
+        if (resp.photos.length == 0) {
           this.isModalOpen = true;
         }
       }, (err) => {
@@ -177,6 +184,29 @@ export class PersonalTrainerAreaPage {
 
   onWillDismiss() {
     this.inicialize();
+  }
+
+  profilePhoto = async () => {
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: false,
+      resultType: CameraResultType.Base64,
+      width: 800
+    });
+    this.profile_photo = 'data:image/jpeg;base64,' + image.base64String;
+  };
+
+  savePhoto() {
+    let data = {
+      access_token: this.access_token,
+      request: {
+        personal_trainer_id: this.personal_trainer.id,
+        profile_photo: this.profile_photo
+      }
+    }
+    this.api.saveProfilePhoto(data).subscribe(() => {
+      this.isModalOpen = false;
+    });
   }
 
 }

@@ -28,7 +28,7 @@
           </ion-list-header>
           <ion-item button color="light" *ngFor="let pt of pts" routerLink="/pt/{{ pt.id }}">
             <ion-avatar aria-hidden="true" slot="start">
-              <ion-img src="{{ pt.photos ? pt.photos[0].original_url : 'https://ionicframework.com/docs/img/demos/avatar.svg' }}"></ion-img>
+              <ion-img src="{{ pt.photos.length > 0 ? pt.photos[0].original_url : 'https://ionicframework.com/docs/img/demos/avatar.svg' }}"></ion-img>
             </ion-avatar>
             <ion-label>
               <h2>{{ pt.name }}</h2>

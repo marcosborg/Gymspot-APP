@@ -10,12 +10,12 @@ export class ApiService {
     private http: HttpClient
   ) { }
 
-  //url: string = 'https://gymspot.pt/api/v2/';
-  //protected_url: string = 'https://gymspot.pt/api/v1/';
-  //auth_url: string = 'https://gymspot.pt/api/';
-  url: string = 'http://127.0.0.1:8000/api/v2/';
-  protected_url: string = 'http://127.0.0.1:8000/api/v1/';
-  auth_url: string = 'http://127.0.0.1:8000/api/';
+  url: string = 'https://gymspot.pt/api/v2/';
+  protected_url: string = 'https://gymspot.pt/api/v1/';
+  auth_url: string = 'https://gymspot.pt/api/';
+  //url: string = 'http://127.0.0.1:8000/api/v2/';
+  //protected_url: string = 'http://127.0.0.1:8000/api/v1/';
+  //auth_url: string = 'http://127.0.0.1:8000/api/';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -155,5 +155,15 @@ export class ApiService {
       })
     };
     return this.http.post(this.protected_url + 'update-professional-data', data.personal_trainer, this.httpOptions);
+  }
+
+  saveProfilePhoto(data: any) {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Accept-Language': 'pt',
+        'Authorization': 'Bearer ' + data.access_token
+      })
+    };
+    return this.http.post(this.protected_url + 'save-profile-photo', data.request, this.httpOptions);
   }
 }

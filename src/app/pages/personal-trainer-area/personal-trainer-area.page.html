@@ -57,7 +57,7 @@
         <ion-list>
           <ion-item lines="none">
             <ion-thumbnail slot="start">
-              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+              <img src="{{ personal_trainer.photos.length > 0 ? personal_trainer.photos[0].original_url : 'https://ionicframework.com/docs/img/demos/avatar.svg' }}" />
             </ion-thumbnail>
             <ion-label class="small">Pode tirar várias fotografias. A primeira será a de perfil.</ion-label>
             <ion-button size="large" color="danger" (click)="setOpen(true)"><ion-icon name="camera-outline"></ion-icon></ion-button>
@@ -96,12 +96,25 @@
         </ion-toolbar>
       </ion-header>
       <ion-content class="ion-padding">
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni illum quidem recusandae ducimus quos
-          reprehenderit. Veniam, molestias quos, dolorum consequuntur nisi deserunt omnis id illo sit cum qui. Eaque,
-          dicta.
-        </p>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title class="ion-text-center">Fotografia</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <div class="profile-picture-container">
+              <div class="profile-picture" style="background-image: url('{{ profile_photo }}');"></div>
+            </div>
+            <div class="ion-text-center">
+              <ion-button size="small" color="danger" (click)="profilePhoto()">Tirar fotografia de perfil</ion-button>
+            </div>
+          </ion-card-content>
+        </ion-card>
       </ion-content>
+      <ion-footer>
+        <ion-toolbar color="danger">
+          <ion-button color="light" expand="full" fill="clear" (click)="savePhoto()">Gravar</ion-button>
+        </ion-toolbar>
+      </ion-footer>
     </ng-template>
   </ion-modal>
 </ion-content>
