@@ -70,6 +70,23 @@ export class Tab3Page implements OnInit {
   inicialize() {
     this.loadingController.create().then((loading) => {
       loading.present();
+      this.user = {
+        name: '',
+        email: '',
+        password: '',
+        password_confirmation: '',
+      };
+      this.client = {
+        name: '',
+        zip: '',
+        location: '',
+        country_id: 170,
+        phone: '',
+        vat: '',
+      };
+      this.password = null;
+      this.password_confirmation = null;
+      this.countries = [];
       this.preferences.checkName('access_token').then((resp: any) => {
         if (resp.value) {
           this.access_token = resp.value;
@@ -316,5 +333,9 @@ export class Tab3Page implements OnInit {
         });
       });
     });
+  }
+
+  goPersonalTrainer() {
+    this.router.navigateByUrl('personal-trainer-area');
   }
 }

@@ -112,5 +112,13 @@
                     conta</ion-button>
             </ion-card-content>
         </ion-card>
+        <ion-card>
+            <ion-card-header *ngIf="!user.personal_trainer">
+                <h1 class="ion-text-center">Fazer upgrade para Personal trainer</h1>
+            </ion-card-header>
+            <ion-card-content>
+                <ion-button color="danger" expand="block" (click)="goPersonalTrainer()">Ir para área de personal trainer</ion-button>
+            </ion-card-content>
+        </ion-card>
     </div>
 </ion-content>

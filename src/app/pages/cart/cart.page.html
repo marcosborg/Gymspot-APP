@@ -21,5 +21,11 @@
                 </ion-item-sliding>
             </ion-list>
         </ion-card-content>
+        <ion-button (click)="deleteCart()" fill="clear" color="light">Apagar carrinho</ion-button>
     </ion-card>
 </ion-content>
+<ion-footer>
+    <ion-toolbar color="danger">
+        <ion-button expand="full" fill="clear" color="light" (click)="pay()">Finalizar a reserva e pagar</ion-button>
+    </ion-toolbar>
+</ion-footer>

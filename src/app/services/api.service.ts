@@ -146,4 +146,14 @@ export class ApiService {
     };
     return this.http.get(this.protected_url + 'countries', this.httpOptions);
   }
+
+  updateProfessionalData(data: any) {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Accept-Language': 'pt',
+        'Authorization': 'Bearer ' + data.access_token
+      })
+    };
+    return this.http.post(this.protected_url + 'update-professional-data', data.personal_trainer, this.httpOptions);
+  }
 }

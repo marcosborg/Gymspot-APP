@@ -44,6 +44,10 @@ export const routes: Routes = [
   {
     path: 'cart',
     loadComponent: () => import('./pages/cart/cart.page').then( m => m.CartPage)
+  },  {
+    path: 'personal-trainer-area',
+    loadComponent: () => import('./pages/personal-trainer-area/personal-trainer-area.page').then( m => m.PersonalTrainerAreaPage)
   },
+
 
 ];
